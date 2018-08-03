@@ -1,125 +1,123 @@
 <!-- 首页 -->
 <template>
-  <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
-    <Row type="flex">
-        <i-col :span="spanLeft" class="layout-menu-left">
-            <Menu :active-name="setActive" theme="dark" width="auto" @on-select="routeTo">
-                <div class="layout-logo-left">
-                    <h3>后台管理</h3></div>
-                <Menu-item name="about">
-                    <Icon type="ios-navigate" :size="iconSize"></Icon>
-                    <span class="layout-text">关于</span>
-                </Menu-item>
-                <Menu-item name="form">
-                    <Icon type="document" :size="iconSize"></Icon>
-                    <span class="layout-text">表单</span>
-                </Menu-item>
-                <Menu-item name="table">
-                    <Icon type="navicon" :size="iconSize"></Icon>
-                    <span class="layout-text">表格</span>
-                </Menu-item>
-            </Menu>
-        </i-col>
-        <i-col :span="spanRight">
-            <div class="layout-header">
-                <i-button type="text" @click.native="toggleClick">
-                    <Icon type="navicon" size="32"></Icon>
-                </i-button>
-            </div>
-            <div class="layout-breadcrumb">
-                <Breadcrumb>
-                    <Breadcrumb-item>首页</Breadcrumb-item>
-                    <Breadcrumb-item>页面</Breadcrumb-item>
-                    <Breadcrumb-item>{{this.$route.path.replace('/','')}}</Breadcrumb-item>
-                </Breadcrumb>
-            </div>
-            <div class="layout-content">
-                <div class="layout-content-main">
-                    <transition mode="out-in">
-                        <router-view></router-view>
-                    </transition>
+  <div class="layout">
+    <Layout>
+        <Header>
+            <Menu mode="horizontal" theme="dark" active-name="1">
+                <!-- <div class="layout-logo"></div> -->
+                <div class="layout-title">
+                    <span>后台管理系统</span>
                 </div>
-            </div>
-            <div class="layout-copy">
-                2011-2016 &copy; NSLab
-            </div>
-        </i-col>
-    </Row>
-</div>
+                <div class="layout-nav">
+                    <MenuItem name="1">
+                        <Icon type="ios-navigate"></Icon>
+                        Item 1
+                    </MenuItem>
+                    <MenuItem name="2">
+                        <Icon type="ios-keypad"></Icon>
+                        Item 2
+                    </MenuItem>
+                    <MenuItem name="3">
+                        <Icon type="ios-analytics"></Icon>
+                        Item 3
+                    </MenuItem>
+                    <MenuItem name="4" @click="logout">
+                        <Icon type="md-exit" />
+                        <a @click="logout">退出</a>
+                    </MenuItem>
+                </div>
+            </Menu>
+        </Header>
+        <Layout>
+            <Sider hide-trigger :style="{background: '#fff'}">
+                <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-navigate"></Icon>
+                            Item 1
+                        </template>
+                        <MenuItem name="1-1">Option 1</MenuItem>
+                        <MenuItem name="1-2">Option 2</MenuItem>
+                        <MenuItem name="1-3">Option 3</MenuItem>
+                    </Submenu>
+                    <Submenu name="2">
+                        <template slot="title">
+                            <Icon type="ios-keypad"></Icon>
+                            Item 2
+                        </template>
+                        <MenuItem name="2-1">Option 1</MenuItem>
+                        <MenuItem name="2-2">Option 2</MenuItem>
+                    </Submenu>
+                    <Submenu name="3">
+                        <template slot="title">
+                            <Icon type="ios-analytics"></Icon>
+                            Item 3
+                        </template>
+                        <MenuItem name="3-1">Option 1</MenuItem>
+                        <MenuItem name="3-2">Option 2</MenuItem>
+                    </Submenu>
+                </Menu>
+            </Sider>
+            <Layout :style="{padding: '0 24px 24px'}">
+                <Breadcrumb :style="{margin: '24px 0'}">
+                    <BreadcrumbItem>Home</BreadcrumbItem>
+                    <BreadcrumbItem>Components</BreadcrumbItem>
+                    <BreadcrumbItem>Layout</BreadcrumbItem>
+                </Breadcrumb>
+                <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                    Content
+                </Content>
+            </Layout>
+        </Layout>
+    <Footer class="layout-footer-center">2018-2018 &copy; iadmin</Footer>
+    </Layout>
+    </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
+  methods: {
+    logout () {
+      this.$router.push('/')
     }
   }
 }
 </script>
 <style scoped>
-.layout {
+.layout{
     border: 1px solid #d7dde4;
     background: #f5f7f9;
     position: relative;
     border-radius: 4px;
     overflow: hidden;
 }
-
-.layout-breadcrumb {
-    padding: 10px 15px 0;
-}
-
-.layout-content {
-    min-height: 600px;
-    margin: 15px;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
-}
-
-.layout-content-main {
-    padding: 20px 10px;
-}
-
-.layout-copy {
-    text-align: center;
-    padding: 10px 0 20px;
-    color: #9ea7b4;
-}
-
-.layout-menu-left {
-    background: #464c5b;
-    /*min-width: 100px;*/
-}
-
-.layout-header {
-    height: 60px;
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-}
-
-.layout-logo-left {
-    width: 90%;
+.layout-logo{
+    width: 100px;
     height: 30px;
     background: #5b6270;
     border-radius: 3px;
-    margin: 15px auto;
-    line-height: 30px;
-    color: white;
+    float: left;
+    position: relative;
+    top: 15px;
+}
+.layout-title{
+    /* width: 100px; */
+    /* height: 30px; */
+    /* background: #5b6270; */
+    /* border-radius: 3px; */
+    float: left;
+    position: relative;
+    top: 5px;
+    /* left: 5px; */
+    color: #ffffff;
+    font-size: 16px
+}
+.layout-nav{
+    width: 420px;
+    margin: 0 auto;
+    margin-right: 20px;
+}
+.layout-footer-center{
     text-align: center;
-    vertical-align: middle;
-    overflow: hidden;
-}
-
-.layout-ceiling-main a {
-    color: #9ba7b5;
-}
-
-.layout-hide-text .layout-text {
-    display: none;
-}
-
-.ivu-col {
-    transition: width .2s ease-in-out;
 }
 </style>
