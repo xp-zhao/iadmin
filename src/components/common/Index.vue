@@ -13,48 +13,52 @@
                         <Icon type="ios-navigate"></Icon>
                         Item 1
                     </MenuItem>
-                    <MenuItem name="2">
+                    <!-- <MenuItem name="2">
                         <Icon type="ios-keypad"></Icon>
                         Item 2
-                    </MenuItem>
+                    </MenuItem> -->
                     <MenuItem name="3">
                         <Icon type="ios-analytics"></Icon>
                         Item 3
                     </MenuItem>
                     <MenuItem name="4" @click="logout">
                         <Icon type="md-exit" />
-                        <a @click="logout">退出</a>
+                        <a @click="logout">退出登录</a>
                     </MenuItem>
                 </div>
             </Menu>
         </Header>
         <Layout>
-            <Sider hide-trigger :style="{background: '#fff'}">
-                <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
+            <Sider ref="side" hide-trigger :style="{background: '#fff'}" v-model="isCollapsed">
+                <Menu active-name="1-1" theme="light" width="auto" :open-names="['1']" @on-select='routeTo' accordion>
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-navigate"></Icon>
-                            Item 1
+                            数据库工具
                         </template>
-                        <MenuItem name="1-1">Option 1</MenuItem>
-                        <MenuItem name="1-2">Option 2</MenuItem>
-                        <MenuItem name="1-3">Option 3</MenuItem>
+                        <MenuItem name="about">关于</MenuItem>
+                        <MenuItem name="form">表单</MenuItem>
+                        <MenuItem name="database">数据库</MenuItem>
                     </Submenu>
                     <Submenu name="2">
                         <template slot="title">
                             <Icon type="ios-keypad"></Icon>
-                            Item 2
+                            iview 学习
                         </template>
-                        <MenuItem name="2-1">Option 1</MenuItem>
-                        <MenuItem name="2-2">Option 2</MenuItem>
+                        <MenuItem name="table">Table 表格</MenuItem>
+                        <MenuItem name="blank">Option 2</MenuItem>
                     </Submenu>
                     <Submenu name="3">
                         <template slot="title">
                             <Icon type="ios-analytics"></Icon>
-                            Item 3
+                            vue 学习
                         </template>
-                        <MenuItem name="3-1">Option 1</MenuItem>
-                        <MenuItem name="3-2">Option 2</MenuItem>
+                        <MenuItem name="test">About</MenuItem>
+                        <MenuItem name="home">Home</MenuItem>
+                        <MenuItem name="comment">Comment</MenuItem>
+                        <MenuItem name="todolist">TodoList</MenuItem>
+                        <MenuItem name="user">User</MenuItem>
+                        <MenuItem name="axios">Axios</MenuItem>
                     </Submenu>
                 </Menu>
             </Sider>
@@ -62,10 +66,10 @@
                 <Breadcrumb :style="{margin: '24px 0'}">
                     <BreadcrumbItem>Home</BreadcrumbItem>
                     <BreadcrumbItem>Components</BreadcrumbItem>
-                    <BreadcrumbItem>Layout</BreadcrumbItem>
+                    <BreadcrumbItem>{{this.$route.path.replace('/','')}}</BreadcrumbItem>
                 </Breadcrumb>
                 <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-                    Content
+                    <router-view></router-view>
                 </Content>
             </Layout>
         </Layout>
@@ -76,9 +80,21 @@
 
 <script>
 export default {
+  data () {
+    return {
+        isCollapsed: false,
+        modal2: false
+    }
+  },
   methods: {
     logout () {
       this.$router.push('/')
+    },
+    routeTo (e) {
+        this.$router.push(e)
+    },
+    collapsedSider () {
+        this.$refs.side.toggleCollapse();
     }
   }
 }

@@ -11,7 +11,7 @@
                 <Input v-model="loginFrom.password" type="password"/>
             </Form-item>
             <Form-item>
-                <i-button type="success" @click.native="handleSubmit('loginFrom')" long>登录</i-button>
+                <i-button type="success" @click.native="handleSubmit('loginFrom')" @keyup.enter="handleSubmit('loginFrom')" long>登录</i-button>
             </Form-item>
         </i-form>
       </div>
@@ -52,7 +52,7 @@ export default {
           alert('验证成功')
           console.log(this.loginFrom.user)
           console.log(this.loginFrom.password)
-          this.$router.push('/index')
+          this.$router.push('/about')
         } else {
           alert('验证失败')
         }
