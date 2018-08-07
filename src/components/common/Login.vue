@@ -49,7 +49,6 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          alert('验证成功')
           console.log(this.loginFrom.user)
           console.log(this.loginFrom.password)
           this.$router.push('/about')

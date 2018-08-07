@@ -81,7 +81,7 @@ export default {
           message: '邮箱不能为空',
           trigger: 'blur'
         }, {
-        type: 'email',
+          type: 'email',
           message: '邮箱格式不正确',
           trigger: 'blur'
         }],
@@ -133,11 +133,11 @@ export default {
     }
   },
   methods: {
-    handleSubmit(name) {
-      this.$Message.success('这是一条成功的提示');
+    handleSubmit (name) {
+      this.$Message.success('这是一条成功的提示')
     },
-    handleReset(name) {
-      this.$Message.warning('这是一条警告的提示');
+    handleReset (name) {
+      this.$Message.warning('这是一条警告的提示')
     }
   }
 }

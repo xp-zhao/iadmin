@@ -42,7 +42,7 @@ export default {
     },
     // 全选/全不选
     selectAllTodos (check) {
-      this.todos.forEach(todo => todo.complete = check)
+      this.todos.forEach(todo => { todo.complete = check })
     }
   }
 }

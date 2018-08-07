@@ -51,8 +51,10 @@ export default {
         this.users = users
       }).catch(error => {
         // 失败，更新状态
-        this.loading = false
-        this.errorMsg = '请求失败'
+        if (error) {
+          this.loading = false
+          this.errorMsg = '请求失败'
+        }
       })
     })
   }

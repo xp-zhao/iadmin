@@ -53,7 +53,6 @@
                             <Icon type="ios-analytics"></Icon>
                             vue 学习
                         </template>
-                        <MenuItem name="test">About</MenuItem>
                         <MenuItem name="home">Home</MenuItem>
                         <MenuItem name="comment">Comment</MenuItem>
                         <MenuItem name="todolist">TodoList</MenuItem>
@@ -82,8 +81,8 @@
 export default {
   data () {
     return {
-        isCollapsed: false,
-        modal2: false
+      isCollapsed: false,
+      modal2: false
     }
   },
   methods: {
@@ -91,10 +90,8 @@ export default {
       this.$router.push('/')
     },
     routeTo (e) {
-        this.$router.push(e)
-    },
-    collapsedSider () {
-        this.$refs.side.toggleCollapse();
+      // console.log(this.$router,e)
+      this.$router.push('/' + e)
     }
   }
 }
